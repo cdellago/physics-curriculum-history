@@ -65,7 +65,7 @@ def make_combined(ba, ma, lang, outfile):
     fig, ax = plt.subplots(figsize=(11, 7.8))
     ax.hist(ba, bins=bins, color="tab:blue", alpha=0.8,
             edgecolor="white", linewidth=0.5, label=lbl_ba, zorder=3)
-    ax.hist(ma, bins=bins, color="tab:orange", alpha=0.8,
+    ax.hist(ma, bins=bins, color="tab:orange", alpha=1.0,
             edgecolor="white", linewidth=0.5, label=lbl_ma, zorder=4)
 
     ax.set_xlabel(xlabel, fontsize=20)

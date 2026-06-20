@@ -79,6 +79,17 @@ def make_combined(ba, ma, lang, outfile):
         ax.axvline(c, color="gray", linewidth=1.1, linestyle="--", alpha=0.7, zorder=1)
     ax.set_xlim(lo, hi)
     ax.margins(x=0.01)
+    # label the centuries on a secondary top axis
+    _ct = [c + 50 for c in centuries if lo <= c + 50 <= hi]
+    _lab = []
+    for _t in _ct:
+        _n = (_t - 50) // 100 + 1
+        _suf = "th" if 10 <= _n % 100 <= 20 else {1: "st", 2: "nd", 3: "rd"}.get(_n % 10, "th")
+        _lab.append(f"{_n}{_suf} century")
+    _sax = ax.secondary_xaxis("top")
+    _sax.set_xticks(_ct)
+    _sax.set_xticklabels(_lab, fontsize=12.5, color="0.35", fontstyle="italic")
+    _sax.tick_params(length=0)
     ax.legend(fontsize=14, frameon=True)
 
     fig.tight_layout()

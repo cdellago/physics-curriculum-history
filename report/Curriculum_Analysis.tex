@@ -1,0 +1,318 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{microtype}
+\usepackage{caption}
+\usepackage[hidelinks]{hyperref}
+
+% Allow long file names (typeset verbatim) to break at any character so they
+% never run past the margin.
+\urlstyle{tt}
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\do\_\do\.\do\-\do\/\UrlOrds}
+\makeatother
+\newcommand{\fn}[1]{\nolinkurl{#1}}
+
+\title{\textbf{A Historical Analysis of the Vienna Physics Curricula}\\[2mm]
+\large Dating the Topics of the Bachelor's and Master's Programmes in Physics
+(Version 2026)}
+\author{Faculty of Physics, University of Vienna}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+This report documents an analysis of the curricula of the Bachelor's and
+Master's programmes in Physics at the University of Vienna (both Version 2026).
+For each curriculum the individual scientific topics of all modules were
+extracted from the official curriculum documents and decomposed into atomic
+items. Each topic was then annotated with the year in which the corresponding
+concept was first introduced or the corresponding discovery was made, together
+with the responsible scientist(s) and a bibliographic source for the
+attribution. The resulting datasets---$545$ topics for the Bachelor's programme
+and $174$ for the Master's programme---were analysed statistically and
+visualised as histograms of topics per decade. The Bachelor's curriculum spans
+more than four centuries of physics and mathematics (median year $1905$),
+whereas the Master's curriculum is sharply concentrated in the twentieth
+century (median year $1936$), reflecting its role as a research-oriented
+specialisation built on the broad foundations laid in the Bachelor's degree.
+\end{abstract}
+
+\section{Objective}
+The goal of this analysis was to characterise the two Physics curricula not by
+their administrative structure but by the \emph{historical depth} of their
+scientific content. Concretely, for every topic taught we asked: \emph{when},
+and \emph{by whom}, was this piece of physics or mathematics first established?
+Aggregating the answers reveals how each programme is distributed across the
+history of science and makes the pedagogical difference between the Bachelor's
+and Master's degrees quantitatively visible.
+
+\section{Data and Method}
+
+\subsection{Source material}
+The analysis is based on the two official curriculum documents,
+\texttt{BA\_Physik.pdf} (Bachelor) and \texttt{MA\_Physics.pdf} (Master), both in
+the Version~2026 draft. The text of every module description was extracted and
+the enumerated content (the ``\textit{Die Inhalte umfassen}\,'' / possible-content
+lists) was used as the basis for the topic catalogue. Learning-outcome and
+competence statements were deliberately excluded, as they describe skills rather
+than datable scientific concepts.
+
+\subsection{Topic decomposition}
+The curriculum texts frequently bundle several distinct concepts into a single
+phrase. Every such phrase was decomposed into \emph{atomic} topics, each
+corresponding to a single discovery or concept that can carry one year and one
+attribution. For example, the Bachelor entry
+``\textit{Gradient, Divergenz, Rotation}'' was split into three separate rows,
+and the large elective modules \textit{Wahl-Fachbereiche} and
+\textit{Wahllaborpraktikum} were unfolded into their constituent named methods
+(e.g.\ FFT, quantum error correction, BCS superconductivity). The elective
+subject areas were retained as an explicit grouping column so that the topics of
+each field (Computational Physics, Quantum Information, Particle Physics, \dots)
+remain identifiable.
+
+\subsection{Annotation}
+Each atomic topic received four annotations:
+\begin{itemize}
+  \item \textbf{Year} --- the year of the seminal publication that first
+        introduced the concept or reported the discovery.
+  \item \textbf{Scientist(s)} --- the originator(s); where a topic combines
+        several contributions, the principal one is named with secondary
+        contributors noted in parentheses.
+  \item \textbf{Source} --- a bibliographic reference for the attribution,
+        given as \emph{author, landmark work, year}. Publication titles are kept
+        in their original language, which is standard scholarly practice.
+  \item \textbf{Subject area} (electives only) --- the field heading under which
+        the topic is offered.
+\end{itemize}
+Topics without a single identifiable originator---laboratory and presentation
+skills, orientation courses, generic programming setup, the master's thesis and
+defence, and similarly broad method headings---were marked ``---'' and excluded
+from the statistical analysis.
+
+\subsection{Deliverables and reproducibility}
+For each curriculum the catalogue was produced as a spreadsheet in both German
+and English (identical content, translated headers, module names, subject areas
+and topics). The decade histograms are generated directly from the spreadsheets
+by two short, self-contained Python scripts
+(\texttt{make\_histograms.py} and \texttt{make\_combined\_histogram.py}), so the
+figures can be regenerated at any time. The complete list of files is given in
+Section~\ref{sec:files}.
+
+\subsection{Caveats}
+The attributions are, by their nature, scholarly judgements. For foundational
+results with multiple independent originators, and especially for the broad
+elective and core subject areas that represent entire research fields, a single
+\emph{representative} seminal contribution was chosen. The source column
+documents the work that established each concept to the level of
+\emph{author--title--year}; exact volume and page numbers were intentionally
+omitted to avoid spurious precision. Individual attributions can therefore be
+revised without affecting the overall picture.
+
+\section{The Topic Catalogues}
+
+\subsection{Bachelor's programme}
+The Bachelor catalogue contains $545$ atomic topics across $25$ modules, of
+which $476$ carry a year and $69$ are non-attributable. The two large elective
+modules dominate in size: \textit{Wahl-Fachbereiche} contributes $149$ topics
+across eleven subject areas and \textit{Wahllaborpraktikum} a further $62$ across
+eight. The core lecture modules (Experimental Physics, Theoretical Physics,
+Analysis, Linear Algebra, \dots) contribute the remainder.
+
+\subsection{Master's programme}
+The Master catalogue contains $174$ atomic topics across $8$ modules, of which
+$140$ carry a year and $34$ are non-attributable. Here the scientific content is
+concentrated almost entirely in a single module: \textit{Core Topics} provides
+$150$ topics, organised into $15$ subject areas
+(Atmospheric Aerosol Physics, Biophysics, Computational Physics, Condensed
+Matter Physics, Electronic Structure, Experimental Quantum Physics, General
+Relativity and Cosmology, Quantum Field Theory, Phase Transitions and Critical
+Phenomena, Physics of Nuclei and Isotopes, Non-equilibrium Statistical Physics,
+Scattering/Microscopy/Spectroscopy, Soft Matter Physics, Theoretical Particle
+Physics, and Theory in Quantum Optics and Quantum Information). The remaining
+modules (Scientific Research Methods, Advanced Research Topics, Electives,
+Proposal/Master's Seminar, Thesis and Defensio) are research- and
+skills-oriented and contribute few datable topics.
+
+\section{Results}
+
+\subsection{Summary statistics}
+Table~\ref{tab:summary} summarises the distribution of topic years for the two
+programmes. For the Bachelor's programme the single ancient entry
+(Euclidean geometry, $\approx 300$\,BC) is treated as an outlier and excluded
+from the summary figures; it is the only pre-Renaissance topic and, when
+included, shifts the mean down to $1877$ and inflates the standard deviation
+from $82$ to $129$ years.
+
+\begin{table}[h]
+\centering
+\caption{Summary statistics of the topic years (dated topics only).
+Bachelor figures exclude the single Euclidean-geometry outlier.}
+\label{tab:summary}
+\begin{tabular}{lcc}
+\toprule
+Quantity & Bachelor & Master \\
+\midrule
+Dated topics $n$        & $475$              & $140$ \\
+Median year             & $1905$             & $1936$ \\
+Mean year               & $1882$             & $1936$ \\
+Std.\ deviation (years) & $82$               & $35$ \\
+Earliest topic          & $1572$ (Bombelli)  & $1828$ (Green) \\
+Latest topic            & $2004$ (graphene)  & $2001$ (KLM) \\
+Modal decade            & 1920s ($51$)       & 1930s ($22$) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Bachelor's programme}
+The distribution of Bachelor topics by decade is shown in
+Figure~\ref{fig:ba}. The curriculum covers the entire history of modern physics
+and its mathematical underpinnings: a sparse seventeenth-- and
+eighteenth--century tail (Newton, Leibniz, Euler, Lagrange), a pronounced rise
+through the nineteenth century (classical electrodynamics, thermodynamics, and
+the rigorous foundations of analysis), and a dominant early--twentieth--century
+peak in the \textbf{1920s} ($51$ topics) driven by the quantum--mechanical
+revolution. Content continues at a substantial level up to the present day
+through quantum information, condensed-matter and computational topics.
+The oldest non-ancient topic is the introduction of complex numbers
+(Bombelli, $1572$); the most recent is graphene (Geim and Novoselov, $2004$).
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.92\textwidth]{BA_Physics_Topics_Histogram.png}
+\caption{Number of Bachelor topics per decade. Vertical dashed lines mark
+centuries. The distribution peaks in the 1920s and has a median year of $1905$.}
+\label{fig:ba}
+\end{figure}
+
+\subsection{Master's programme}
+The corresponding distribution for the Master's programme is shown in
+Figure~\ref{fig:ma}. It is markedly more modern and far more tightly
+concentrated: there is essentially no content before $\sim 1820$, and the mass
+of the distribution lies in the twentieth century with a peak in the
+\textbf{1930s} ($22$ topics). The median year is $1936$ and the standard
+deviation is only $35$ years---less than half that of the Bachelor's
+programme. The earliest topic is Green's functions (Green, $1828$); the most
+recent is photonic quantum information processing
+(Knill, Laflamme and Milburn, $2001$).
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.92\textwidth]{MA_Physics_Topics_Histogram.png}
+\caption{Number of Master topics per decade. The distribution is concentrated in
+the twentieth century with a median year of $1936$.}
+\label{fig:ma}
+\end{figure}
+
+\subsection{Comparison}
+Figure~\ref{fig:bama} overlays the two distributions on a common axis. The
+contrast captures the pedagogical logic of the two-cycle degree structure: the
+Master's distribution (orange) sits almost entirely beneath the modern end of
+the Bachelor's distribution (blue). The Bachelor's programme builds the
+historical and mathematical \emph{foundations} of physics across four centuries,
+while the Master's programme assumes those foundations and specialises in
+twentieth- and twenty-first-century \emph{research} physics. Numerically, the
+centre of gravity moves forward by about three decades, from a median of $1905$
+to $1936$.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.98\textwidth]{BA_MA_Topics_Histogram.png}
+\caption{Combined histogram of Bachelor (blue) and Master (orange) topics by
+decade. The Master's content is confined to the modern end of the Bachelor's
+range. Counts are raw; the Master's programme has fewer topics in total
+($140$ vs.\ $475$ dated topics).}
+\label{fig:bama}
+\end{figure}
+
+\section{Discussion}
+The quantitative results confirm and sharpen an intuitive expectation. A
+Bachelor's curriculum in physics must, of necessity, recapitulate the historical
+development of the field: one cannot teach quantum mechanics without first
+teaching classical mechanics, calculus, and electrodynamics. This produces a
+broad distribution with a long tail reaching back to the seventeenth century
+(and, for Euclidean geometry, to antiquity). A research-oriented Master's
+curriculum, by contrast, can take this entire edifice as given and devote itself
+to the modern research frontier; its topic distribution is therefore both later
+in time and far narrower. The roughly $30$-year forward shift of the median, and
+the halving of the temporal spread, are compact quantitative signatures of this
+transition from \emph{foundational breadth} to \emph{research-level depth}.
+
+\section{Limitations}
+
+\paragraph{Earliest-date bias.}
+The most important limitation concerns the meaning of the assigned year. By
+construction, each topic is dated by the \emph{earliest} possible date---the
+year in which the concept was first introduced or the founding discovery was
+made---whereas a course actually treats the topic together with all of its
+subsequent developments. The year therefore marks the \emph{birth} of a subject,
+not the full historical range of the material taught under that heading.
+
+A clear example is the topic \textit{Molecular dynamics} in the Computational
+Physics course, which is dated to $1957$, the year of the first hard-sphere
+molecular-dynamics simulation by Alder and Wainwright. The course, however, does
+not stop there: it also covers much more recent methodological developments such
+as thermostat and barostat algorithms for sampling different ensembles
+(1980s), constraint algorithms, and symplectic / time-reversible integration
+schemes, many of which date from the 1980s and later. All of this modern content
+is nevertheless represented in the dataset by the single founding year $1957$.
+
+The same effect applies throughout: a topic such as ``density functional
+theory'' (dated $1965$) is taught together with exchange--correlation functionals
+and methods developed decades later, and ``general relativity'' (dated $1915$)
+is accompanied by modern results on gravitational waves and numerical relativity.
+As a consequence, the histograms \emph{systematically shift weight towards
+earlier decades} and should be read as the distribution of the \emph{conceptual
+origins} of the curriculum, not as the distribution of the actual age of the
+material presented in the lecture halls. The true content is, on average,
+more modern than the founding-year distributions suggest. A more faithful but
+considerably more laborious alternative would be to assign each topic a range of
+years, or to record separately the principal later milestones; this was beyond
+the scope of the present analysis.
+
+\paragraph{Further limitations.}
+Three additional points should be kept in mind. First, the year and scientist
+assignments are scholarly judgements; for fields rather than single discoveries
+a representative seminal work was chosen. Second, the histograms weight every
+atomic topic equally, irrespective of the teaching time (ECTS) devoted to it, so
+the analysis measures the \emph{conceptual} rather than the \emph{temporal}
+balance of the curriculum. Third, the decomposition of compound topics into
+atomic items necessarily involves some discretion, which affects the absolute
+counts (but not the qualitative shape of the distributions).
+
+\section{Files Produced}
+\label{sec:files}
+The analysis produced the following deliverables, all in the project directory:
+\begin{itemize}
+  \item \textbf{Spreadsheets (Bachelor):}
+        \fn{BA_Physik_Module_Themen.xlsx} (German),
+        \fn{BA_Physics_Modules_Topics.xlsx} (English).
+  \item \textbf{Spreadsheets (Master):}
+        \fn{MA_Physik_Module_Themen.xlsx} (German),
+        \fn{MA_Physics_Modules_Topics.xlsx} (English).
+  \item \textbf{Histograms (Bachelor):}
+        \fn{BA_Physik_Themen_Histogramm.png} (German),
+        \fn{BA_Physics_Topics_Histogram.png} (English).
+  \item \textbf{Histograms (Master):}
+        \fn{MA_Physik_Themen_Histogramm.png} (German),
+        \fn{MA_Physics_Topics_Histogram.png} (English).
+  \item \textbf{Combined histograms:}
+        \fn{BA_MA_Themen_Histogramm.png} (German),
+        \fn{BA_MA_Topics_Histogram.png} (English).
+  \item \textbf{Scripts:}
+        \fn{make_histograms.py},
+        \fn{make_combined_histogram.py}.
+\end{itemize}
+Each spreadsheet contains a \textit{Topics by Module} sheet (one row per atomic
+topic, with module, subject area, topic, year, scientist and source) and a
+\textit{Module Overview} sheet (topic counts per module).
+
+\end{document}

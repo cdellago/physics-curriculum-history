@@ -10,7 +10,7 @@ across the history of physics and mathematics.
 
 See the full write-up in [`report/Curriculum_Analysis.pdf`](report/Curriculum_Analysis.pdf).
 
-![Bachelor and Master Physics: topics by decade](figures/BA_MA_Topics_Histogram.png)
+![Bachelor and Master Physics: topics by decade](figures/BA_MA_Topics_Histogram.png?v=2)
 
 *Topics of the Bachelor's (blue) and Master's (orange) curricula by decade of
 the underlying discovery. The Bachelor spans four centuries of foundations; the

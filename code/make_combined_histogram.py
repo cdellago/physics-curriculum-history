@@ -75,6 +75,9 @@ def make_combined(ba, ma, lang, outfile):
     ax.tick_params(axis="x", rotation=45, labelsize=15.5)
     ax.tick_params(axis="y", labelsize=15.5)
     ax.grid(axis="y", color="gray", alpha=0.3, zorder=0)
+    for _c in centuries:                     # alternate century background shading
+        if (_c // 100) % 2 == 1:
+            ax.axvspan(max(_c, lo), min(_c + 100, hi), color="0.95", zorder=0)
     for c in centuries:
         ax.axvline(c, color="gray", linewidth=1.1, linestyle="--", alpha=0.7, zorder=1)
     ax.set_xlim(lo, hi)
